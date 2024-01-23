@@ -1,12 +1,12 @@
-const { session } = require("telegraf");
+const StateClass = require('../utils/stateClass')
 
 const stateInit = () => (ctx, next) => {
-  // session()
-  ctx.session = ctx.session || { state: {} };
-  // ctx.session.state
-  ctx.state = ctx.session.state || {};
-  ctx.update.state = ctx.state.current;
-  // console.log('ctx::',ctx);
+  // console.log('ctx.session:',ctx.session);
+  ctx.session = ctx.session || { state: new StateClass('-') };
+  // console.log(ctx.session.state);
+  ctx.state = ctx.session.state;
+  ctx.update.state = ctx.state[ctx.state.current];
+  console.log('ctx.state:',ctx.state);
   next();
 };
 
