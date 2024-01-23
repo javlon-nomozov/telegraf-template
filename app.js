@@ -12,11 +12,8 @@ const logger = require("./middlewares/logger");
 // Make session data available
 bot.use(session());
 
-// Use the session middleware
-bot.use(session());
-
 // My Middlewares
-bot.use(logger);
+// bot.use(logger);
 // session middleware must be initialized before state middlewar
 bot.use(stateInit());
 
